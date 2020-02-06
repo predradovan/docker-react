@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true docker-react-image npm run test -- --coverage
+
+deploy:
+  provider: elsticbeanstalk
+  region: "eu-west-3"
+  app: "travis-ci-test"
+  environment: "TravisCiTest-env"
+  bucket_name: "elasticbeanstalk-eu-west-3-852876478149"
+  bucket_path: "travis-ci-test"
+  on:
+    branch: master
+  acces_key_id: $awsAccessKey
+  secret_access_key:
+    secure: "$awsSecretKey"
