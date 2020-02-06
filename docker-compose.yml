@@ -1,0 +1,19 @@
+version: '3'
+services: 
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports: 
+      - "4001:3000"
+    volumes: 
+      - /app/node_modules
+      - C:\Users\rado10\AppData\Roaming\npm\node_modules\create-react-app\frontend\:/app
+  tests: 
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes: 
+      - /app/node_modules
+      - C:\Users\rado10\AppData\Roaming\npm\node_modules\create-react-app\frontend\:/app 
+    command: ["npm", "run", "test"]
